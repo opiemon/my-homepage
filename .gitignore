@@ -1,0 +1,47 @@
+# ============================================================
+#  機密情報を Git（＝public リポジトリ）に載せないための除外設定
+#  ここに列挙したファイルはコミット・push されず、手元だけに残ります。
+#  秘密情報は必ずこれらのファイルに入れ、コードに直書きしないこと。
+# ============================================================
+
+# --- 環境変数・シークレット ---
+.env
+.env.*
+*.local
+secrets.*
+config.secret.*
+credentials.json
+service-account*.json
+
+# --- 認証・鍵 ---
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+*.keystore
+
+# --- 個人情報・非公開メモ ---
+private/
+secret/
+personal/
+*.private.*
+NOTES.private.md
+
+# --- クラウド/デプロイ認証 ---
+.wrangler/
+.cloudflare/
+.vercel/
+.netlify/
+
+# --- OS / エディタ ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# --- 依存/ビルド ---
+node_modules/
+dist/
+.cache/
