@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>つぶやきルーレット | お題に答える匿名ひろば</title>
+  <meta name="description" content="お題ルーレットを回して、出たテーマに匿名でつぶやくミニSNS。人の考えや思想がゆるくのぞける、遊び心のあるひろばです。">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="wrap header__inner">
+      <a href="#top" class="brand">
+        <span class="brand__mark">🎡</span>
+        <span class="brand__name">つぶやきルーレット</span>
+      </a>
+      <div class="header__stats" id="headerStats">
+        <span class="stat-chip" title="このブラウザからの投稿数">✍️ <b id="statPosts">0</b></span>
+        <span class="stat-chip" title="あなたが押したいいね">❤️ <b id="statLikes">0</b></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="top">
+    <!-- ゲーム：お題ルーレット -->
+    <section class="roulette" aria-labelledby="rouletteHead">
+      <p class="roulette__eyebrow">🎯 今日は何を話す？</p>
+      <h1 class="roulette__head" id="rouletteHead">お題ルーレット</h1>
+
+      <div class="reel" id="reel" aria-live="polite">
+        <span class="reel__text" id="reelText">ボタンを押してお題を決めよう</span>
+      </div>
+
+      <div class="roulette__actions">
+        <button class="btn btn--spin" id="spinBtn">
+          <span class="btn__icon">🎲</span> ルーレットを回す
+        </button>
+        <button class="btn btn--ghost" id="jumpPost" hidden>このお題で書く ↓</button>
+      </div>
+      <p class="roulette__hint" id="spinHint">回した回数：<b id="spinCount">0</b> 回</p>
+    </section>
+
+    <!-- 投稿フォーム -->
+    <section class="composer" id="composer" aria-labelledby="composerHead">
+      <h2 class="section-title" id="composerHead">つぶやく</h2>
+
+      <div class="composer__topic" id="composerTopic" hidden>
+        <span class="topic-chip" id="topicChip"></span>
+        <button class="topic-clear" id="topicClear" title="お題を外す" aria-label="お題を外す">×</button>
+      </div>
+
+      <form id="postForm" novalidate>
+        <textarea id="postText" class="composer__text" maxlength="280"
+          placeholder="いま思っていること、こっそりな本音、なんでもどうぞ…" rows="3" required></textarea>
+
+        <div class="composer__row">
+          <input id="postName" class="composer__name" type="text" maxlength="20"
+            placeholder="名前（空欄でランダム匿名）" autocomplete="off">
+          <span class="composer__count"><b id="charCount">0</b>/280</span>
+        </div>
+
+        <div class="composer__foot">
+          <p class="composer__note">🕶️ 匿名でOK。データはこのブラウザだけに保存されます。</p>
+          <button type="submit" class="btn btn--post" id="postBtn">投稿する</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- タイムライン -->
+    <section class="timeline" aria-labelledby="timelineHead">
+      <div class="timeline__head">
+        <h2 class="section-title" id="timelineHead">タイムライン</h2>
+        <div class="timeline__tools">
+          <select id="sortSelect" class="select" aria-label="並び替え">
+            <option value="new">新着順</option>
+            <option value="like">いいね順</option>
+          </select>
+          <button class="btn btn--ghost btn--sm" id="seedBtn" title="サンプル投稿を追加">サンプルを入れる</button>
+        </div>
+      </div>
+
+      <div class="filterbar" id="filterBar" hidden>
+        <span class="filterbar__label">お題でしぼる：</span>
+        <span id="activeFilter" class="filter-tag"></span>
+        <button class="filter-clear" id="filterClear">解除</button>
+      </div>
+
+      <div id="feed" class="feed"></div>
+
+      <div id="emptyState" class="empty" hidden>
+        <span class="empty__emoji">🌱</span>
+        <p class="empty__title">まだ何もありません</p>
+        <p class="empty__text">ルーレットを回して、最初のひとことを残してみよう。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>🎡 つぶやきルーレット — お題に答える、ゆるい匿名ひろば</p>
+      <button class="footer__reset" id="resetAll">保存データを全部消す</button>
+    </div>
+  </footer>
+
+  <!-- 投稿カードのテンプレート -->
+  <template id="postTpl">
+    <article class="post">
+      <div class="post__avatar" aria-hidden="true"></div>
+      <div class="post__body">
+        <div class="post__meta">
+          <span class="post__name"></span>
+          <span class="post__dot">·</span>
+          <time class="post__time"></time>
+          <button class="post__del" title="削除" aria-label="この投稿を削除">🗑️</button>
+        </div>
+        <button class="post__topic" hidden></button>
+        <p class="post__text"></p>
+        <div class="post__actions">
+          <button class="like">
+            <span class="like__icon">🤍</span>
+            <span class="like__count">0</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
