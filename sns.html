@@ -3,84 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>つぶやき | 池田屋 IKEDAYA</title>
-  <meta name="description" content="お題ルーレットを回して、出たテーマに匿名でひとこと。毎日のことをゆるく共有する交流ひろば。">
+  <title>つぶやき — IKEDA</title>
+  <meta name="description" content="お題ルーレットを回して、出たテーマに匿名でひとこと。息抜きの実験場。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 </head>
 <body data-page="sns">
-  <header class="nav">
+  <div class="fx" aria-hidden="true">
+    <div class="orb orb--1"></div><div class="orb orb--2"></div><div class="orb orb--3"></div>
+  </div>
+  <div id="cursor" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
     <div class="nav__inner">
-      <a class="nav__brand" href="index.html">
-        <span class="nav__jp">池田屋</span><span class="nav__en">IKEDAYA</span>
-      </a>
-      <button class="nav__toggle" id="navToggle" aria-controls="navMenu" aria-expanded="false">MENU</button>
+      <a class="nav__brand" href="index.html">IKEDA<span class="nav__dot">.</span></a>
+      <button class="nav__toggle" id="navToggle" aria-controls="navMenu" aria-expanded="false" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
       <nav class="nav__menu" id="navMenu">
-        <a href="index.html" data-nav="home">HOME<span>ホーム</span></a>
-        <a href="blog.html" data-nav="blog">BLOG<span>ブログ</span></a>
-        <a href="can.html" data-nav="can">CAN<span>できること</span></a>
-        <a href="sns.html" data-nav="sns">TALK<span>つぶやき</span></a>
+        <a href="index.html#work">Work</a>
+        <a href="index.html#approach">Approach</a>
+        <a href="blog.html" data-nav="blog">Blog</a>
+        <a href="sns.html" class="nav__sub" data-nav="sns">つぶやき</a>
+        <a href="index.html#contact" class="nav__cta">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main class="wrap" id="top">
-    <div class="page-head">
-      <p class="sec-label en">TALK / ROULETTE</p>
-      <h1 class="sec-title">つぶやきルーレット</h1>
-      <p class="sec-desc">お題を回して、出たテーマに匿名でひとこと。毎日のなんてことない話が集まる場所。</p>
+  <main class="wrap" id="top" style="padding-top: calc(var(--nav-h) + 60px)">
+    <div class="reveal">
+      <p class="eyebrow">Playground / つぶやき</p>
+      <h1 class="section__title display">つぶやきルーレット</h1>
+      <p class="section__lead">本編のおまけ。お題を回して、出たテーマに匿名でひとこと。肩の力を抜いて、どうぞ。</p>
     </div>
 
-    <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:8px">
-      <span class="filter-tag" title="このブラウザからの投稿数" style="background:var(--bg-3);color:var(--acid)">✍️ <b id="statPosts">0</b></span>
-      <span class="filter-tag" title="あなたが押したいいね" style="background:var(--bg-3);color:var(--blood)">❤️ <b id="statLikes">0</b></span>
+    <div class="sub-banner reveal" style="margin-top:34px">
+      <p><b>ここは息抜きのコーナーです。</b> 仕事の相談は <a href="index.html#contact" style="text-decoration:underline">Contact</a> からどうぞ。</p>
+      <div class="timeline__tools">
+        <span class="stat-chip">✍️ <b id="statPosts">0</b></span>
+        <span class="stat-chip">❤️ <b id="statLikes">0</b></span>
+      </div>
     </div>
 
-    <!-- ゲーム：お題ルーレット -->
-    <section class="roulette" aria-labelledby="rouletteHead">
-      <p class="roulette__eyebrow">🎯 今日は何を話す？</p>
-      <h2 class="roulette__head en" id="rouletteHead">TOPIC ROULETTE</h2>
+    <section class="roulette reveal">
+      <p class="roulette__eyebrow">Topic Roulette</p>
+      <h2 class="roulette__head display">今日は何を話す？</h2>
       <div class="reel" id="reel" aria-live="polite">
         <span class="reel__text" id="reelText">ボタンを押してお題を決めよう</span>
       </div>
       <div class="roulette__actions">
-        <button class="btn btn--acid" id="spinBtn">🎲 ルーレットを回す</button>
+        <button class="btn btn--grad" id="spinBtn">🎲 ルーレットを回す</button>
         <button class="btn btn--line" id="jumpPost" hidden>このお題で書く ↓</button>
       </div>
       <p class="roulette__hint">回した回数：<b id="spinCount">0</b> 回</p>
     </section>
 
-    <!-- 投稿フォーム -->
-    <section class="composer" id="composer" aria-labelledby="composerHead">
-      <h2 class="sec-title" id="composerHead" style="font-size:1.05rem">つぶやく</h2>
+    <section class="composer reveal" id="composer">
+      <h2 style="font-size:1.05rem" class="display">つぶやく</h2>
       <div class="composer__topic" id="composerTopic" hidden>
         <span class="topic-chip" id="topicChip"></span>
         <button class="topic-clear" id="topicClear" title="お題を外す" aria-label="お題を外す">×</button>
       </div>
       <form id="postForm" novalidate>
-        <textarea id="postText" class="composer__text" maxlength="280"
-          placeholder="いま思っていること、今日のこと、なんでもどうぞ…" rows="3" required></textarea>
+        <textarea id="postText" class="composer__text" maxlength="280" placeholder="いま思っていること、今日のこと、なんでもどうぞ…" rows="3" required></textarea>
         <div class="composer__row">
-          <input id="postName" class="composer__name" type="text" maxlength="20"
-            placeholder="名前（空欄でランダム匿名）" autocomplete="off">
+          <input id="postName" class="composer__name" type="text" maxlength="20" placeholder="名前（空欄でランダム匿名）" autocomplete="off">
           <span class="composer__count"><b id="charCount">0</b>/280</span>
         </div>
         <div class="composer__foot">
           <p class="composer__note">🕶️ 匿名でOK。データはこのブラウザだけに保存されます。</p>
-          <button type="submit" class="btn btn--acid" id="postBtn">投稿する</button>
+          <button type="submit" class="btn btn--grad" id="postBtn">投稿する</button>
         </div>
       </form>
     </section>
 
-    <!-- タイムライン -->
-    <section class="timeline" aria-labelledby="timelineHead">
+    <section class="timeline">
       <div class="timeline__head">
-        <h2 class="sec-title" id="timelineHead" style="font-size:1.05rem">タイムライン</h2>
+        <h2 style="font-size:1.05rem" class="display">タイムライン</h2>
         <div class="timeline__tools">
           <select id="sortSelect" class="select" aria-label="並び替え">
             <option value="new">新着順</option>
             <option value="like">いいね順</option>
           </select>
-          <button class="btn btn--ghost btn--sm" id="seedBtn" title="サンプル投稿を追加">サンプルを入れる</button>
+          <button class="btn btn--ghost btn--sm" id="seedBtn">サンプルを入れる</button>
         </div>
       </div>
 
@@ -100,16 +108,30 @@
     </section>
   </main>
 
-  <footer class="foot">
-    <div class="wrap foot__inner">
-      <div class="foot__brand">池田屋 <span class="en">IKEDAYA</span></div>
-      <nav class="foot__links">
-        <a href="index.html">ホーム</a>
-        <a href="blog.html">ブログ</a>
-        <a href="can.html">できること</a>
-      </nav>
-      <p class="foot__copy">&copy; 2026 池田屋</p>
-      <button class="foot__reset" id="resetAll">つぶやきの保存データを全部消す</button>
+  <footer class="footer" style="margin-top: 90px">
+    <div class="wrap">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">IKEDA<span class="dot">.</span></div>
+          <p class="footer__tag">経営戦略を、かたちにする。</p>
+        </div>
+        <div class="footer__col">
+          <h4>Menu</h4>
+          <a href="index.html#work">Work</a>
+          <a href="index.html#approach">Approach</a>
+          <a href="blog.html">Blog</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+        <div class="footer__col">
+          <h4>More</h4>
+          <a href="sns.html">つぶやき</a>
+          <a href="mailto:bokuopiemon@gmail.com">Email</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 IKEDA</span>
+        <button class="footer__reset" id="resetAll">つぶやきの保存データを消す</button>
+      </div>
     </div>
   </footer>
 

@@ -1,7 +1,7 @@
 'use strict';
 
 /* =========================================================
-   blog.js — 池田屋のブログ（localStorage 保存）
+   blog.js — Blog（localStorage 保存）
    ========================================================= */
 (function () {
   var KEY = 'ikedaya.blog.v1';
@@ -24,23 +24,10 @@
   function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
   function fmtDate(ts) {
     var d = new Date(ts);
-    return d.getFullYear() + '.' +
-      String(d.getMonth() + 1).padStart(2, '0') + '.' +
-      String(d.getDate()).padStart(2, '0');
+    return d.getFullYear() + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getDate()).padStart(2, '0');
   }
+  function toast(m) { if (window.__toast) window.__toast(m); }
 
-  /* ---- toast ---- */
-  var toastEl = null, toastTimer = null;
-  function toast(msg) {
-    if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'toast'; document.body.appendChild(toastEl); }
-    toastEl.textContent = msg;
-    void toastEl.offsetWidth;
-    toastEl.classList.add('is-show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toastEl.classList.remove('is-show'); }, 2200);
-  }
-
-  /* ---- エディタ開閉 ---- */
   function setEditor(open) {
     form.hidden = !open;
     toggle.textContent = open ? '閉じる' : '開く';
@@ -51,7 +38,6 @@
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setEditor(form.hidden); }
   });
 
-  /* ---- 投稿 ---- */
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var t = title.value.trim(), b = body.value.trim();
@@ -60,16 +46,19 @@
     save();
     title.value = ''; tag.value = ''; body.value = '';
     render();
-    toast('投稿しました 🎉');
+    toast('投稿しました');
     articles.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  /* ---- 描画 ---- */
   function render() {
     articles.innerHTML = '';
     if (posts.length === 0) { empty.hidden = false; return; }
     empty.hidden = true;
-    posts.forEach(function (p) { articles.appendChild(card(p)); });
+    posts.forEach(function (p) {
+      var node = card(p);
+      articles.appendChild(node);
+      requestAnimationFrame(function () { node.classList.add('in'); });
+    });
   }
 
   function card(p) {
@@ -85,8 +74,7 @@
     bodyEl.textContent = p.body;
 
     var more = node.querySelector('.article__more');
-    // 短い本文なら「続きを読む」を隠す
-    if (p.body.length < 90 && p.body.indexOf('\n') === -1) {
+    if (p.body.length < 100 && p.body.indexOf('\n') === -1) {
       bodyEl.classList.remove('is-clamped');
       more.hidden = true;
     }
@@ -104,13 +92,12 @@
     return node;
   }
 
-  /* ---- サンプル ---- */
   if (seed) {
     seed.addEventListener('click', function () {
       var now = Date.now();
       var samples = [
-        { title: 'このサイトを作りなおした', tag: '制作', body: 'ずっと放置してた個人サイトを、思い切って全部作りなおした。\n\nダークで少し攻めた見た目にしたら、書くのが楽しくなった。見た目って大事だ。\nブログ・できること・つぶやき、の3本立て。ゆっくり育てていく。' },
-        { title: '朝のコーヒーだけは譲れない', tag: '日記', body: '何を削っても、朝の一杯だけはやめられない。豆を挽くあの音で、ようやく一日が始まる感じがする。' }
+        { title: 'つくる前に、決めること', tag: 'Note', body: '仕事の質は、手を動かす前でほとんど決まる。\n\n何をつくるかより、何をつくらないか。事業のゴールから逆算し、削れるものを削る。残ったものだけに、全力を注ぐ。\n\nシンプルさは、機能を減らすことではない。本質だけを残すことだ。' },
+        { title: '戦略とデザインは、地続き', tag: 'Design', body: '経営戦略とデザインを別々の話にしない。ブランドの姿は、事業の意志そのもの。\n\n上流の判断が、最後の一画素まで効いてくる。だから、端から端まで見通す。' }
       ];
       samples.forEach(function (s, i) {
         posts.unshift({ id: uid(), title: s.title, tag: s.tag, body: s.body, ts: now - (i + 1) * 86400000 });

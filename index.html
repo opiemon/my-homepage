@@ -3,104 +3,209 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>池田屋 IKEDAYA | 日々をつくる・書く・つぶやく</title>
-  <meta name="description" content="池田屋の個人ホームページ。ブログ、できること、そしてお題に答える匿名つぶやきSNS。日々のことをカジュアルに残す場所。">
+  <title>IKEDA — 経営戦略を、かたちにする。</title>
+  <meta name="description" content="ブランディング、データ基盤、UI/UX、開発。事業に必要なものを見極め、上流から下流まで一貫してつくる。池田のポートフォリオ。">
+  <meta property="og:title" content="IKEDA — 経営戦略を、かたちにする。">
+  <meta property="og:description" content="ブランディング、データ基盤、UI/UX、開発。上流から下流まで一貫してつくる。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 </head>
 <body data-page="home">
-  <!-- ナビ -->
-  <header class="nav">
+  <div class="fx" aria-hidden="true">
+    <div class="orb orb--1"></div><div class="orb orb--2"></div><div class="orb orb--3"></div>
+  </div>
+  <div id="cursor" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
     <div class="nav__inner">
-      <a class="nav__brand" href="index.html">
-        <span class="nav__jp">池田屋</span><span class="nav__en">IKEDAYA</span>
-      </a>
-      <button class="nav__toggle" id="navToggle" aria-controls="navMenu" aria-expanded="false">MENU</button>
+      <a class="nav__brand" href="index.html">IKEDA<span class="nav__dot">.</span></a>
+      <button class="nav__toggle" id="navToggle" aria-controls="navMenu" aria-expanded="false" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
       <nav class="nav__menu" id="navMenu">
-        <a href="index.html" data-nav="home">HOME<span>ホーム</span></a>
-        <a href="blog.html" data-nav="blog">BLOG<span>ブログ</span></a>
-        <a href="can.html" data-nav="can">CAN<span>できること</span></a>
-        <a href="sns.html" data-nav="sns">TALK<span>つぶやき</span></a>
+        <a href="#work" data-nav="work">Work</a>
+        <a href="#approach">Approach</a>
+        <a href="blog.html" data-nav="blog">Blog</a>
+        <a href="sns.html" class="nav__sub" data-nav="sns">つぶやき</a>
+        <a href="#contact" class="nav__cta">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- ティッカー -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker__track">
-      <span>★ 池田屋の個人ホームページ</span><span>★ 毎日のことをつぶやこう</span><span>★ ブログ更新中</span><span>★ できることいろいろ</span>
-      <span>★ 池田屋の個人ホームページ</span><span>★ 毎日のことをつぶやこう</span><span>★ ブログ更新中</span><span>★ できることいろいろ</span>
-    </div>
-  </div>
+  <main>
+    <!-- HERO -->
+    <section class="hero wrap">
+      <div class="hero__inner">
+        <p class="hero__kicker reveal">Branding · Data · UI/UX · Development</p>
+        <h1 class="hero__title display">
+          <span class="line reveal" data-delay="1">経営戦略を、</span>
+          <span class="line reveal gradient-text" data-delay="2">かたちにする。</span>
+        </h1>
+        <p class="hero__sub reveal" data-delay="3">
+          ブランディングからデータ基盤、UI/UXの設計と実装まで。
+          事業に本当に必要なものを見極め、上流から下流まで一貫してつくる。
+        </p>
+        <div class="hero__cta reveal" data-delay="3">
+          <a href="#contact" class="btn btn--grad">相談する</a>
+          <a href="#work" class="btn btn--line">できることを見る</a>
+        </div>
+      </div>
+      <span class="hero__scroll">Scroll</span>
+    </section>
 
-  <!-- ヒーロー -->
-  <section class="hero">
-    <div class="wrap hero__inner">
-      <p class="hero__kicker en">PERSONAL HOMEPAGE</p>
-      <h1 class="hero__title">
-        <span class="out">つくる</span>。<br>書く。<span class="acid">つぶやく</span>。
-      </h1>
-      <p class="hero__sub">
-        池田屋の、ぜんぶ入りの部屋。作ったもの・考えたこと・どうでもいい日々のことまで、
-        ここにゆるく置いていきます。匿名で交ざってもOK。
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Branding Design</span><span class="on">Data Platform</span><span>UI / UX</span><span class="on">Development</span><span>Strategy → Form</span>
+        <span>Branding Design</span><span class="on">Data Platform</span><span>UI / UX</span><span class="on">Development</span><span>Strategy → Form</span>
+      </div>
+    </div>
+
+    <!-- STATEMENT -->
+    <section class="section wrap">
+      <div class="statement">
+        <p class="statement__text display reveal">
+          <span class="dim">何をつくらないかを、</span>決める。
+        </p>
+        <p class="statement__note reveal" data-delay="1">
+          手段からは始めない。事業のゴールから逆算し、本当に必要なものだけをつくる。だから速く、迷いがなく、強い。
+        </p>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="section wrap" id="work">
+      <p class="eyebrow reveal">Work / できること</p>
+      <h2 class="section__title display reveal" data-delay="1">戦略から逆算して、<br>必要なものをつくる。</h2>
+      <p class="section__lead reveal" data-delay="2">
+        Web領域のデザインなら、なんでも。企業の経営戦略とブランドに合わせて最適なかたちを定義し、実装まで届ける。
       </p>
-      <div class="hero__cta">
-        <a href="sns.html" class="btn btn--acid">つぶやきに参加する →</a>
-        <a href="blog.html" class="btn btn--line">ブログを読む</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- 各ページ導線 -->
-  <div class="wrap">
-    <div class="home-grid">
-      <a class="tile" href="blog.html">
-        <div class="tile__no en">01</div>
-        <div class="tile__en en">BLOG</div>
-        <div class="tile__jp">ブログ</div>
-        <p class="tile__desc">池田屋が思ったこと・作ったことを書きためる場所。記事の投稿もここから。</p>
-        <span class="tile__arrow">↗</span>
-      </a>
-      <a class="tile" href="can.html">
-        <div class="tile__no en">02</div>
-        <div class="tile__en en">CAN</div>
-        <div class="tile__jp">できること</div>
-        <p class="tile__desc">池田屋ができること・手伝えること・趣味でやってること。声かけ大歓迎。</p>
-        <span class="tile__arrow">↗</span>
-      </a>
-      <a class="tile" href="sns.html">
-        <div class="tile__no en">03</div>
-        <div class="tile__en en">TALK</div>
-        <div class="tile__jp">つぶやき</div>
-        <p class="tile__desc">お題ルーレットを回して、出たテーマに匿名でひとこと。ゆるい交流ひろば。</p>
-        <span class="tile__arrow">↗</span>
-      </a>
-    </div>
-
-    <!-- 最新プレビュー -->
-    <div class="preview">
-      <div class="preview__box">
-        <h3>LATEST BLOG / さいきんのブログ</h3>
-        <div id="previewBlog"></div>
-        <a class="preview__more en" href="blog.html">MORE →</a>
+      <div class="work__grid">
+        <article class="card reveal">
+          <div class="card__no">01</div>
+          <h3 class="card__title display">ブランディングデザイン</h3>
+          <p class="card__en">Branding Design</p>
+          <p class="card__text">経営戦略とブランドを起点に、伝わる表現を設計する。ロゴからサイト、ビジュアルまで、Web領域のデザインを一貫して。</p>
+          <div class="card__tags"><span class="tag">Brand Strategy</span><span class="tag">Visual Identity</span><span class="tag">Web Design</span></div>
+        </article>
+        <article class="card reveal" data-delay="1">
+          <div class="card__no">02</div>
+          <h3 class="card__title display">データ基盤構築・運用</h3>
+          <p class="card__en">Data Platform</p>
+          <p class="card__text">ETLツールでデータ基盤を設計・構築し、運用まで担う。散らばった情報を、意思決定を支える一本の流れに変える。</p>
+          <div class="card__tags"><span class="tag">ETL</span><span class="tag">Data Pipeline</span><span class="tag">Operation</span></div>
+        </article>
+        <article class="card reveal">
+          <div class="card__no">03</div>
+          <h3 class="card__title display">UI / UX デザイン・実装</h3>
+          <p class="card__en">UI / UX</p>
+          <p class="card__text">体験の設計から実装まで。使う人の迷いを消し、事業の成果につながるインターフェースをつくる。</p>
+          <div class="card__tags"><span class="tag">UX Research</span><span class="tag">UI Design</span><span class="tag">Frontend</span></div>
+        </article>
+        <article class="card reveal" data-delay="1">
+          <div class="card__no">04</div>
+          <h3 class="card__title display">開発</h3>
+          <p class="card__en">Development</p>
+          <p class="card__text">要件定義から実装、運用まで。上流から下流まで経験しているからこそ、つながりのあるものをつくれる。</p>
+          <div class="card__tags"><span class="tag">Architecture</span><span class="tag">Full-stack</span><span class="tag">End-to-end</span></div>
+        </article>
       </div>
-      <div class="preview__box">
-        <h3>LATEST TALK / さいきんのつぶやき</h3>
-        <div id="previewTalk"></div>
-        <a class="preview__more en" href="sns.html">MORE →</a>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- フッター -->
-  <footer class="foot">
-    <div class="wrap foot__inner">
-      <div class="foot__brand">池田屋 <span class="en">IKEDAYA</span></div>
-      <nav class="foot__links">
-        <a href="blog.html">ブログ</a>
-        <a href="can.html">できること</a>
-        <a href="sns.html">つぶやき</a>
-      </nav>
-      <p class="foot__copy">&copy; 2026 池田屋 — 日々をつくる・書く・つぶやく。</p>
+    <!-- APPROACH -->
+    <section class="section wrap" id="approach">
+      <p class="eyebrow reveal">Approach / 上流から下流まで</p>
+      <h2 class="section__title display reveal" data-delay="1">ひとつの視点で、<br>端から端まで。</h2>
+      <p class="section__lead reveal" data-delay="2">
+        戦略・設計・実装・運用を切り離さない。全体を見通すからこそ、無駄なく、ぶれずに、成果へ届く。
+      </p>
+
+      <div class="flow">
+        <div class="flow__step reveal"><span class="k">01 Strategy</span><h3>戦略</h3><p>事業とブランドを理解し、つくるべきものを定義する。</p></div>
+        <div class="flow__step reveal" data-delay="1"><span class="k">02 Design</span><h3>設計</h3><p>体験と構造を描き、進む道を確かにする。</p></div>
+        <div class="flow__step reveal" data-delay="2"><span class="k">03 Build</span><h3>実装</h3><p>動くものをつくり、価値を形にする。</p></div>
+        <div class="flow__step reveal" data-delay="3"><span class="k">04 Operate</span><h3>運用</h3><p>育て、成果を出し続ける仕組みにする。</p></div>
+      </div>
+    </section>
+
+    <!-- BLOG PREVIEW -->
+    <section class="section wrap">
+      <p class="eyebrow reveal">Journal / ブログ</p>
+      <h2 class="section__title display reveal" data-delay="1">考えていること。</h2>
+      <div class="blog-preview" id="previewBlog"></div>
+      <div class="reveal" data-delay="1" style="margin-top:28px">
+        <a href="blog.html" class="btn btn--line btn--sm">すべての記事を読む →</a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section wrap" id="contact">
+      <div class="contact__inner">
+        <div>
+          <p class="eyebrow reveal">Contact / お問い合わせ</p>
+          <h2 class="section__title display reveal" data-delay="1">はじめましょう。</h2>
+          <p class="section__lead reveal" data-delay="2">
+            具体的な課題でも、ざっくりした相談でも。まずは一通、送ってください。
+          </p>
+          <div class="contact__mailbox reveal" data-delay="2">
+            <p class="contact__mail-label">Email</p>
+            <div class="contact__mail">
+              <a href="mailto:bokuopiemon@gmail.com" id="mailLink">bokuopiemon@gmail.com</a>
+              <button class="btn btn--ghost" id="copyMail" type="button">コピー</button>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact__form reveal" id="contactForm" data-delay="1" novalidate>
+          <div class="field">
+            <label for="cName">お名前</label>
+            <input id="cName" type="text" autocomplete="name" placeholder="山田 太郎" required>
+          </div>
+          <div class="field">
+            <label for="cEmail">メールアドレス</label>
+            <input id="cEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field">
+            <label for="cMsg">ご相談内容</label>
+            <textarea id="cMsg" rows="5" placeholder="つくりたいもの、事業の状況、気になっていることなど。" required></textarea>
+          </div>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          <button type="submit" class="btn btn--grad">メールで送る</button>
+          <p class="contact__note">送信ボタンでメールソフトが開き、上記アドレス宛の下書きが作成されます。</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">IKEDA<span class="dot">.</span></div>
+          <p class="footer__tag">経営戦略を、かたちにする。ブランディング・データ・デザイン・開発を、ひとつの視点で。</p>
+        </div>
+        <div class="footer__col">
+          <h4>Menu</h4>
+          <a href="#work">Work</a>
+          <a href="#approach">Approach</a>
+          <a href="blog.html">Blog</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer__col">
+          <h4>More</h4>
+          <a href="sns.html">つぶやき</a>
+          <a href="mailto:bokuopiemon@gmail.com">Email</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 IKEDA</span>
+        <span>Designed &amp; built end-to-end.</span>
+      </div>
     </div>
   </footer>
 
