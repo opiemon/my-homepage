@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLOG | 池田屋 IKEDAYA</title>
+  <meta name="description" content="池田屋のブログ。思ったこと・作ったこと・日々のメモ。記事の投稿もこのページから。">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="blog">
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="index.html">
+        <span class="nav__jp">池田屋</span><span class="nav__en">IKEDAYA</span>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-controls="navMenu" aria-expanded="false">MENU</button>
+      <nav class="nav__menu" id="navMenu">
+        <a href="index.html" data-nav="home">HOME<span>ホーム</span></a>
+        <a href="blog.html" data-nav="blog">BLOG<span>ブログ</span></a>
+        <a href="can.html" data-nav="can">CAN<span>できること</span></a>
+        <a href="sns.html" data-nav="sns">TALK<span>つぶやき</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="page-head">
+      <p class="sec-label en">BLOG</p>
+      <h1 class="sec-title">池田屋の記</h1>
+      <p class="sec-desc">思ったこと、作ったこと、どうでもいい日々のメモ。書きたいときに書く。</p>
+    </div>
+
+    <div class="blog-layout">
+      <!-- 記事エディタ -->
+      <section class="editor">
+        <div class="editor__head" id="editorHead" role="button" tabindex="0" aria-expanded="true" aria-controls="editorBody">
+          <h2 class="en">＋ 記事を書く</h2>
+          <span class="editor__toggle" id="editorToggle">閉じる</span>
+        </div>
+        <form class="editor__body" id="blogForm" novalidate>
+          <div class="field">
+            <label for="blogTitle">タイトル</label>
+            <input id="blogTitle" type="text" maxlength="80" placeholder="今日のこと、作ったもの、なんでも" required>
+          </div>
+          <div class="field">
+            <label for="blogTag">タグ（任意）</label>
+            <input id="blogTag" type="text" maxlength="20" placeholder="例）日記 / 制作 / 雑感">
+          </div>
+          <div class="field">
+            <label for="blogBody">本文</label>
+            <textarea id="blogBody" rows="8" placeholder="ここに本文を書く。改行はそのまま反映されます。" required></textarea>
+          </div>
+          <div class="editor__foot">
+            <p class="editor__note">🕶️ 下書きも公開もこのブラウザ内に保存されます。</p>
+            <button type="submit" class="btn btn--acid" id="blogSubmit">投稿する</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- 記事一覧 -->
+      <div id="articles"></div>
+
+      <div id="blogEmpty" class="empty" hidden>
+        <span class="empty__emoji">📝</span>
+        <p class="empty__title">まだ記事がありません</p>
+        <p class="empty__text">上の「＋ 記事を書く」から最初の一本を。</p>
+        <p style="margin-top:14px"><button class="btn btn--ghost btn--sm" id="blogSeed">サンプル記事を入れる</button></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__inner">
+      <div class="foot__brand">池田屋 <span class="en">IKEDAYA</span></div>
+      <nav class="foot__links">
+        <a href="index.html">ホーム</a>
+        <a href="can.html">できること</a>
+        <a href="sns.html">つぶやき</a>
+      </nav>
+      <p class="foot__copy">&copy; 2026 池田屋</p>
+    </div>
+  </footer>
+
+  <!-- 記事テンプレート -->
+  <template id="articleTpl">
+    <article class="article">
+      <div class="article__meta">
+        <span class="article__tag" hidden></span>
+        <time class="article__date"></time>
+      </div>
+      <h2 class="article__title"></h2>
+      <p class="article__body is-clamped"></p>
+      <div class="article__foot">
+        <button class="article__more">続きを読む</button>
+        <button class="article__del">削除</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="blog.js"></script>
+  <script src="common.js"></script>
+</body>
+</html>

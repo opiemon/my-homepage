@@ -3,129 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>つぶやきルーレット | お題に答える匿名ひろば</title>
-  <meta name="description" content="お題ルーレットを回して、出たテーマに匿名でつぶやくミニSNS。人の考えや思想がゆるくのぞける、遊び心のあるひろばです。">
+  <title>池田屋 IKEDAYA | 日々をつくる・書く・つぶやく</title>
+  <meta name="description" content="池田屋の個人ホームページ。ブログ、できること、そしてお題に答える匿名つぶやきSNS。日々のことをカジュアルに残す場所。">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <!-- ヘッダー -->
-  <header class="header">
-    <div class="wrap header__inner">
-      <a href="#top" class="brand">
-        <span class="brand__mark">🎡</span>
-        <span class="brand__name">つぶやきルーレット</span>
+<body data-page="home">
+  <!-- ナビ -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="index.html">
+        <span class="nav__jp">池田屋</span><span class="nav__en">IKEDAYA</span>
       </a>
-      <div class="header__stats" id="headerStats">
-        <span class="stat-chip" title="このブラウザからの投稿数">✍️ <b id="statPosts">0</b></span>
-        <span class="stat-chip" title="あなたが押したいいね">❤️ <b id="statLikes">0</b></span>
-      </div>
+      <button class="nav__toggle" id="navToggle" aria-controls="navMenu" aria-expanded="false">MENU</button>
+      <nav class="nav__menu" id="navMenu">
+        <a href="index.html" data-nav="home">HOME<span>ホーム</span></a>
+        <a href="blog.html" data-nav="blog">BLOG<span>ブログ</span></a>
+        <a href="can.html" data-nav="can">CAN<span>できること</span></a>
+        <a href="sns.html" data-nav="sns">TALK<span>つぶやき</span></a>
+      </nav>
     </div>
   </header>
 
-  <main class="wrap" id="top">
-    <!-- ゲーム：お題ルーレット -->
-    <section class="roulette" aria-labelledby="rouletteHead">
-      <p class="roulette__eyebrow">🎯 今日は何を話す？</p>
-      <h1 class="roulette__head" id="rouletteHead">お題ルーレット</h1>
+  <!-- ティッカー -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>★ 池田屋の個人ホームページ</span><span>★ 毎日のことをつぶやこう</span><span>★ ブログ更新中</span><span>★ できることいろいろ</span>
+      <span>★ 池田屋の個人ホームページ</span><span>★ 毎日のことをつぶやこう</span><span>★ ブログ更新中</span><span>★ できることいろいろ</span>
+    </div>
+  </div>
 
-      <div class="reel" id="reel" aria-live="polite">
-        <span class="reel__text" id="reelText">ボタンを押してお題を決めよう</span>
+  <!-- ヒーロー -->
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <p class="hero__kicker en">PERSONAL HOMEPAGE</p>
+      <h1 class="hero__title">
+        <span class="out">つくる</span>。<br>書く。<span class="acid">つぶやく</span>。
+      </h1>
+      <p class="hero__sub">
+        池田屋の、ぜんぶ入りの部屋。作ったもの・考えたこと・どうでもいい日々のことまで、
+        ここにゆるく置いていきます。匿名で交ざってもOK。
+      </p>
+      <div class="hero__cta">
+        <a href="sns.html" class="btn btn--acid">つぶやきに参加する →</a>
+        <a href="blog.html" class="btn btn--line">ブログを読む</a>
       </div>
+    </div>
+  </section>
 
-      <div class="roulette__actions">
-        <button class="btn btn--spin" id="spinBtn">
-          <span class="btn__icon">🎲</span> ルーレットを回す
-        </button>
-        <button class="btn btn--ghost" id="jumpPost" hidden>このお題で書く ↓</button>
+  <!-- 各ページ導線 -->
+  <div class="wrap">
+    <div class="home-grid">
+      <a class="tile" href="blog.html">
+        <div class="tile__no en">01</div>
+        <div class="tile__en en">BLOG</div>
+        <div class="tile__jp">ブログ</div>
+        <p class="tile__desc">池田屋が思ったこと・作ったことを書きためる場所。記事の投稿もここから。</p>
+        <span class="tile__arrow">↗</span>
+      </a>
+      <a class="tile" href="can.html">
+        <div class="tile__no en">02</div>
+        <div class="tile__en en">CAN</div>
+        <div class="tile__jp">できること</div>
+        <p class="tile__desc">池田屋ができること・手伝えること・趣味でやってること。声かけ大歓迎。</p>
+        <span class="tile__arrow">↗</span>
+      </a>
+      <a class="tile" href="sns.html">
+        <div class="tile__no en">03</div>
+        <div class="tile__en en">TALK</div>
+        <div class="tile__jp">つぶやき</div>
+        <p class="tile__desc">お題ルーレットを回して、出たテーマに匿名でひとこと。ゆるい交流ひろば。</p>
+        <span class="tile__arrow">↗</span>
+      </a>
+    </div>
+
+    <!-- 最新プレビュー -->
+    <div class="preview">
+      <div class="preview__box">
+        <h3>LATEST BLOG / さいきんのブログ</h3>
+        <div id="previewBlog"></div>
+        <a class="preview__more en" href="blog.html">MORE →</a>
       </div>
-      <p class="roulette__hint" id="spinHint">回した回数：<b id="spinCount">0</b> 回</p>
-    </section>
-
-    <!-- 投稿フォーム -->
-    <section class="composer" id="composer" aria-labelledby="composerHead">
-      <h2 class="section-title" id="composerHead">つぶやく</h2>
-
-      <div class="composer__topic" id="composerTopic" hidden>
-        <span class="topic-chip" id="topicChip"></span>
-        <button class="topic-clear" id="topicClear" title="お題を外す" aria-label="お題を外す">×</button>
+      <div class="preview__box">
+        <h3>LATEST TALK / さいきんのつぶやき</h3>
+        <div id="previewTalk"></div>
+        <a class="preview__more en" href="sns.html">MORE →</a>
       </div>
+    </div>
+  </div>
 
-      <form id="postForm" novalidate>
-        <textarea id="postText" class="composer__text" maxlength="280"
-          placeholder="いま思っていること、こっそりな本音、なんでもどうぞ…" rows="3" required></textarea>
-
-        <div class="composer__row">
-          <input id="postName" class="composer__name" type="text" maxlength="20"
-            placeholder="名前（空欄でランダム匿名）" autocomplete="off">
-          <span class="composer__count"><b id="charCount">0</b>/280</span>
-        </div>
-
-        <div class="composer__foot">
-          <p class="composer__note">🕶️ 匿名でOK。データはこのブラウザだけに保存されます。</p>
-          <button type="submit" class="btn btn--post" id="postBtn">投稿する</button>
-        </div>
-      </form>
-    </section>
-
-    <!-- タイムライン -->
-    <section class="timeline" aria-labelledby="timelineHead">
-      <div class="timeline__head">
-        <h2 class="section-title" id="timelineHead">タイムライン</h2>
-        <div class="timeline__tools">
-          <select id="sortSelect" class="select" aria-label="並び替え">
-            <option value="new">新着順</option>
-            <option value="like">いいね順</option>
-          </select>
-          <button class="btn btn--ghost btn--sm" id="seedBtn" title="サンプル投稿を追加">サンプルを入れる</button>
-        </div>
-      </div>
-
-      <div class="filterbar" id="filterBar" hidden>
-        <span class="filterbar__label">お題でしぼる：</span>
-        <span id="activeFilter" class="filter-tag"></span>
-        <button class="filter-clear" id="filterClear">解除</button>
-      </div>
-
-      <div id="feed" class="feed"></div>
-
-      <div id="emptyState" class="empty" hidden>
-        <span class="empty__emoji">🌱</span>
-        <p class="empty__title">まだ何もありません</p>
-        <p class="empty__text">ルーレットを回して、最初のひとことを残してみよう。</p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="wrap">
-      <p>🎡 つぶやきルーレット — お題に答える、ゆるい匿名ひろば</p>
-      <button class="footer__reset" id="resetAll">保存データを全部消す</button>
+  <!-- フッター -->
+  <footer class="foot">
+    <div class="wrap foot__inner">
+      <div class="foot__brand">池田屋 <span class="en">IKEDAYA</span></div>
+      <nav class="foot__links">
+        <a href="blog.html">ブログ</a>
+        <a href="can.html">できること</a>
+        <a href="sns.html">つぶやき</a>
+      </nav>
+      <p class="foot__copy">&copy; 2026 池田屋 — 日々をつくる・書く・つぶやく。</p>
     </div>
   </footer>
 
-  <!-- 投稿カードのテンプレート -->
-  <template id="postTpl">
-    <article class="post">
-      <div class="post__avatar" aria-hidden="true"></div>
-      <div class="post__body">
-        <div class="post__meta">
-          <span class="post__name"></span>
-          <span class="post__dot">·</span>
-          <time class="post__time"></time>
-          <button class="post__del" title="削除" aria-label="この投稿を削除">🗑️</button>
-        </div>
-        <button class="post__topic" hidden></button>
-        <p class="post__text"></p>
-        <div class="post__actions">
-          <button class="like">
-            <span class="like__icon">🤍</span>
-            <span class="like__count">0</span>
-          </button>
-        </div>
-      </div>
-    </article>
-  </template>
-
-  <script src="script.js"></script>
+  <script src="common.js"></script>
 </body>
 </html>
